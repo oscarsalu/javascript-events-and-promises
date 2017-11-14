@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="assets/foundation/css/app.css">
+    <link rel="stylesheet" href="assets/foundation/css/foundation.css">
+</head>
+
+<body>
+    <div class='grid-x grid-padding-x'>
+        <div class='large-5 middle-5 cell'>
+            <h4>Built in Events</h4>
+            <form>
+                <label>Input Label
+                    <input type="text" id="varA" onkeyup="count()" placeholder="enter number 1 to 10">
+                    </label>
+                <label>Input Label
+                        <input type="text" id='varB' placeholder="value 2">
+                    </label>
+
+                <div class="form-group">
+                    <button onclick="addNumbers()" class=" button ">Success</button>
+                </div>
+            </form>
+        </div>
+        <div class='large-6 middle-6 cell'>
+            <h4>Custon Event</h4>
+            <form>
+                <label>What to Say 
+                        <input type="text" id="varC" placeholder="eg Hi">
+                    </label>
+                <label>Input Name
+                        <input type="text" id='varD' placeholder="Name of the person">
+                    </label>
+
+                <div class="form-group">
+                    <button id="closer" class=" button ">Success</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class='grid-x grid-padding-x'>
+        <div class='large-5 middle-5 cell'>
+            <h4>Toss a dice</h4>
+            <form>
+                <label>Choose a number 
+                        <input type="text" id="varE" placeholder="choose a number between 1 to 6">
+                    </label>
+
+                <div class="form-group">
+                    <button id="before" onclick="dieToss()" class=" button ">Success</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    // build in js events
+    // window.onload = function() {
+    //     alert("Welcome to javascript onload event!");
+    // }
+
+    function count() {
+        var text = "Key was pressed";
+        var a = document.getElementById('varA');
+        //using dynamic typing
+        var i = 0;
+        while (i < a) {
+            text += "<br>The number is " + i;
+            i++;
+        }
+        alert(text);
+    }
+
+    function addNumbers() {
+        var a = document.getElementById('varA');
+        var b = document.getElementById('varB');
+        alert(+a + +b);
+    }
+
+    var c = document.getElementById('varC'),
+        d = document.getElementById('varD');
+
+    // custom events
+    document.getElementById('closer').addEventListener('click', function() {
+        greet(c.value)(d.value);
+    });
+
+    function greet(whattosay) {
+        return function(name) {
+            alert(whattosay + ' ' + name);
+        }
+    }
+    // js promises
+    function dieToss() {
+        var c = document.getElementById('varE');
+        var app = new Promise(
+            function(resolve, reject) {
+                if (c == 6) {
+                    resolve(c);
+                } else {
+                    reject(c);
+                }
+            });
+        app.then(function(toss) {
+            alert('Yay, threw a ' + toss + ' .');
+            console.log('Yay, threw a ' + toss + ' .');
+        }, function(toss) {
+            console.log('Oh, we are sorry you threw a ' + toss + ' .');
+        });
+    }
+</script>
+
+</html>
